@@ -1,0 +1,31 @@
+{
+  "name": "capstone",
+  "private": true,
+  "engines": {
+    "node": ">=20.16.0"
+  },
+  "packageManager": "pnpm@9.15.3",
+  "scripts": {
+    "docs:dev": "pnpm --filter docs dev",
+    "www:dev": "pnpm --filter www dev",
+    "admin:dev": "pnpm --filter admin dev",
+    "db:push": "pnpm --filter @captsone/db push",
+    "db:push:prod": "dotenv -e .env.production -- pnpm --filter @captsone/db push",
+    "db:studio": "pnpm --filter @captsone/db studio",
+    "ui:add": "pnpm --filter @captsone/ui ui-add",
+    "lint": "pnpm biome check --write .",
+    "lint:ws": "sherif",
+    "dev": "pnpm --parallel dev",
+    "build": "pnpm -r build",
+    "typecheck": "pnpm -r typecheck",
+    "clean": "git clean -xdf node_modules && pnpm -r clean"
+  },
+  "devDependencies": {
+    "@biomejs/biome": "1.9.3",
+    "sherif": "^1.1.1",
+    "dotenv-cli": "^8.0.0",
+    "typescript": "catalog:",
+    "vite-tsconfig-paths": "^5.1.4",
+    "vitest": "^2.1.8"
+  }
+}
