@@ -4,7 +4,6 @@ export const Route = createFileRoute("/_public/_auth/reset-password")({
   component: RouteComponent,
 });
 
-import { zodResolver } from "@hookform/resolvers/zod";
 import { Button } from "@captsone/ui/button";
 import {
   Form,
@@ -16,6 +15,7 @@ import {
   FormMessage,
 } from "@captsone/ui/form";
 import { PasswordInput } from "@captsone/ui/password-input";
+import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
 import { toast } from "sonner";
 import * as z from "zod";
