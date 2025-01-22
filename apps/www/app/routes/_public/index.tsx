@@ -25,6 +25,7 @@ import {
   Gauge,
   Leaf,
   ShieldCheck,
+  Sparkles,
   Thermometer,
   Timer,
   Wifi,
@@ -316,7 +317,9 @@ function RouteComponent() {
             >
               Testimonials
             </Button>
-            <Button>Get Started</Button>
+            <Button asChild>
+              <Link to="/dashboard">Get Started</Link>
+            </Button>
           </div>
         </div>
       </nav>
@@ -337,14 +340,15 @@ function RouteComponent() {
             colonies thrive.
           </p>
           <div className="flex flex-col gap-4 min-[400px]:flex-row justify-center">
-            <Button size="lg">Start Free Trial</Button>
-            <Button size="lg" variant="outline">
-              Watch Demo
+            <Button asChild>
+              <Link to="/dashboard">
+                <Sparkles /> Get Started
+              </Link>
             </Button>
           </div>
           <div className="w-full max-w-5xl aspect-video rounded-lg overflow-hidden">
             <img
-              src="https://images.unsplash.com/photo-1471193945509-9ad0617afabf"
+              src="https://images.unsplash.com/photo-1562009803-33ec21fdf130"
               alt="Modern beehive monitoring system"
               className="w-full h-full object-cover"
             />

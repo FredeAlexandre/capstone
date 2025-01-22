@@ -16,6 +16,7 @@ import {
 } from "@captsone/ui/form";
 import { Input } from "@captsone/ui/input";
 import { zodResolver } from "@hookform/resolvers/zod";
+import { FormInput, Home } from "lucide-react";
 import { useForm } from "react-hook-form";
 import { toast } from "sonner";
 import * as z from "zod";
@@ -51,7 +52,7 @@ function RouteComponent() {
   }
 
   return (
-    <div className="flex justify-center items-center h-dvh">
+    <div className="flex flex-col justify-center items-center h-dvh space-y-1">
       <div className="w-[30rem] border p-4 rounded-lg space-y-6">
         <div className="space-y-2">
           <h1 className="font-bold">Forgot Passowrd</h1>
@@ -89,6 +90,18 @@ function RouteComponent() {
             </Button>
           </form>
         </Form>
+      </div>
+      <div className="w-[30rem] border p-1 rounded-lg flex justify-between">
+        <Button asChild variant="ghost">
+          <Link to="/">
+            <Home /> Home
+          </Link>
+        </Button>
+        <Button asChild variant="ghost">
+          <Link to="/signin">
+            <FormInput /> Sign In
+          </Link>
+        </Button>
       </div>
     </div>
   );
