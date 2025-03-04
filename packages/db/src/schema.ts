@@ -54,3 +54,11 @@ export const verification = pgTable("verification", {
   createdAt: timestamp("createdAt"),
   updatedAt: timestamp("updatedAt"),
 });
+
+export const sensorData = pgTable("sensorData", {
+  id: text("id").primaryKey(),
+  topic: text("topic").notNull(),
+  value: text("value").notNull(),
+  createdAt: timestamp("createdAt"),
+  updatedAt: timestamp("updatedAt"),
+});
