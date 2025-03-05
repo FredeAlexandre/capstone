@@ -1,4 +1,11 @@
-import { boolean, pgTable, text, timestamp } from "drizzle-orm/pg-core";
+import { relations } from "drizzle-orm";
+import {
+  boolean,
+  doublePrecision,
+  pgTable,
+  text,
+  timestamp,
+} from "drizzle-orm/pg-core";
 
 export const user = pgTable("user", {
   id: text("id").primaryKey(),
@@ -54,3 +61,47 @@ export const verification = pgTable("verification", {
   createdAt: timestamp("createdAt"),
   updatedAt: timestamp("updatedAt"),
 });
+
+export const hive = pgTable("hive", {
+  id: text("id").primaryKey(),
+  name: text("name").notNull(),
+  location: text("location"),
+  userId: text("userId")
+    .notNull()
+    .references(() => user.id, { onDelete: "cascade" }), // Foreign key referencing 'user.id'
+  createdAt: timestamp("createdAt").notNull().defaultNow(),
+  updatedAt: timestamp("updatedAt").notNull().defaultNow(),
+});
+
+// Define the 'hiveData' table
+export const hiveData = pgTable("hiveData", {
+  id: text("id").primaryKey(),
+  hiveId: text("hiveId")
+    .notNull()
+    .references(() => hive.id, { onDelete: "cascade" }), // Foreign key referencing 'hive.id'
+  temperature: doublePrecision("temperature"),
+  soundLevel: doublePrecision("soundLevel"),
+  recordedAt: timestamp("recordedAt").notNull().defaultNow(),
+});
+
+// Define relationships for the 'user' table
+export const userRelations = relations(user, ({ many }) => ({
+  hives: many(hive),
+}));
+
+// Define relationships for the 'hive' table
+export const hiveRelations = relations(hive, ({ one, many }) => ({
+  owner: one(user, {
+    fields: [hive.userId],
+    references: [user.id],
+  }),
+  data: many(hiveData),
+}));
+
+// Define relationships for the 'hiveData' table
+export const hiveDataRelations = relations(hiveData, ({ one }) => ({
+  hive: one(hive, {
+    fields: [hiveData.hiveId],
+    references: [hive.id],
+  }),
+}));

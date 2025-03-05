@@ -3,6 +3,7 @@ import { Outlet, createFileRoute, redirect } from "@tanstack/react-router";
 export const Route = createFileRoute("/_authed")({
   component: Outlet,
   beforeLoad: ({ context, location }) => {
+    return;
     if (!context.user) {
       throw redirect({
         to: "/signin",

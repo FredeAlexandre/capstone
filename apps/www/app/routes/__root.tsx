@@ -75,7 +75,7 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
 function RootComponent() {
   return (
     <RootDocument>
-      <ThemeProvider>
+      <ThemeProvider defaultTheme="light">
         <Outlet />
         <Toaster />
       </ThemeProvider>
