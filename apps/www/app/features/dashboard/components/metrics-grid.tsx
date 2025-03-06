@@ -12,28 +12,7 @@ export function MetricsGrid() {
       unit: '°C',
       trend: 2.5,
       icon: Thermometer,
-    },
-    {
-      title: 'Humidity',
-      value: data?.humidity ?? 0,
-      unit: '%',
-      trend: -1.2,
-      icon: Droplets,
-    },
-    {
-      title: 'Sound Level',
-      value: data?.sound ?? 0,
-      unit: 'dB',
-      trend: 0.8,
-      icon: Volume2,
-    },
-    {
-      title: 'Signal Strength',
-      value: data?.signal ?? 0,
-      unit: '%',
-      trend: 1.5,
-      icon: Signal,
-    },
+    }
   ];
 
   return (

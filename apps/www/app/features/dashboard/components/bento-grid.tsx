@@ -33,9 +33,9 @@ function TrendChart({ title, color, isLoading }: ChartProps) {
       </CardHeader>
       <CardContent>
         {isLoading ? (
-          <Skeleton className="h-[200px] w-full" />
+          <Skeleton className="h-[600px] w-full" />
         ) : (
-          <ResponsiveContainer width="100%" height={200}>
+          <ResponsiveContainer width="100%" height={600}>
             <AreaChart data={data}>
               <XAxis
                 dataKey="name"
@@ -70,13 +70,10 @@ export function BentoGrid() {
 
   const charts = [
     { title: 'Temperature Trend', color: '#8884d8' },
-    { title: 'Humidity Trend', color: '#82ca9d' },
-    { title: 'Sound Level Trend', color: '#ffc658' },
-    { title: 'Signal Strength Trend', color: '#ff7300' },
   ];
 
   return (
-    <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-2">
+    <div className="grid gap-4 md:grid-cols-1 lg:grid-cols-1">
       {charts.map((chart) => (
         <TrendChart
           key={chart.title}

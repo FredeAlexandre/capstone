@@ -10,8 +10,6 @@ function Dashboard() {
           Real-time sensor data from your hive
         </p>
       </div>
-
-      <MetricsGrid />
       <BentoGrid />
     </div>
   </div>
