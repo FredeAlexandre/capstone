@@ -1,20 +1,18 @@
 {
-  "name": "server",
+  "name": "data-storing",
   "type": "module",
-  "version": "1.0.0",
-  "description": "",
-  "main": "server.js",
+  "private": true,
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
-  },
-  "keywords": [],
-  "author": "",
-  "license": "ISC",
-  "devDependencies": {
-    "@types/node": "^22.10.2",
-    "typescript": "^5.8.2"
+    "start": "tsx ./index.ts"
   },
   "dependencies": {
+    "@captsone/db": "workspace:*",
     "mqtt": "^5.10.4"
+  },
+  "peerDependencies": {
+    "typescript": "^5"
+  },
+  "devDependencies": {
+    "tsx": "^4.19.2"
   }
 }
