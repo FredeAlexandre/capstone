@@ -105,3 +105,11 @@ export const hiveDataRelations = relations(hiveData, ({ one }) => ({
     references: [hive.id],
   }),
 }));
+
+export const sensorData = pgTable("sensorData", {
+  id: text("id").primaryKey(),
+  topic: text("topic").notNull(),
+  value: text("value").notNull(),
+  createdAt: timestamp("createdAt"),
+  updatedAt: timestamp("updatedAt"),
+});
