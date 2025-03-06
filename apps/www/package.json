@@ -21,6 +21,7 @@
     "@tanstack/react-router-with-query": "^1.91.3",
     "@tanstack/start": "^1.91.2",
     "better-auth": "^1.0.22",
+    "date-fns": "^4.1.0",
     "drizzle-orm": "catalog:",
     "lucide-react": "^0.468.0",
     "react": "catalog:react19",

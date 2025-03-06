@@ -111,6 +111,5 @@ export const sensorData = pgTable("sensorData", {
   id: serial("id").primaryKey(),
   topic: text("topic").notNull(),
   value: text("value").notNull(),
-  createdAt: timestamp("createdAt"),
-  updatedAt: timestamp("updatedAt"),
+  createdAt: timestamp("createdAt").notNull().defaultNow(),
 });
