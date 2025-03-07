@@ -3,7 +3,7 @@
   "type": "module",
   "private": true,
   "scripts": {
-    "start": "tsx ./index.ts"
+    "start": "tsx --env-file=../../.env ./index.ts"
   },
   "dependencies": {
     "@captsone/db": "workspace:*",

@@ -13,15 +13,15 @@ import { createServerFn } from '@tanstack/start';
 
 import { format } from "date-fns"
 
-import { eq } from "@captsone/db"
+import { asc, desc, eq } from "@captsone/db"
 import { db } from "@captsone/db/client"
 import { sensorData } from "@captsone/db/schema"
 
 let fake_data: { value: number, time: Date }[] = []
 
 const fetchTemperature = createServerFn({method: "GET"}).handler(async () => {
-  const data = await db.select({ value: sensorData.value, time: sensorData.createdAt }).from(sensorData).where(eq(sensorData.topic, "hive/temperature")).orderBy(sensorData.createdAt).limit(100)
-  return data.map((entry) => ({...entry, value: Number(entry.value)}))
+  const data = await db.select({ value: sensorData.value, time: sensorData.createdAt }).from(sensorData).where(eq(sensorData.topic, "hive/temperature")).orderBy(desc(sensorData.createdAt)).limit(40)
+  return data.map((entry) => ({...entry, value: Number(entry.value)})).reverse()
 
   const newEntry = {
     value: Number((Math.random() * 10 + 20).toFixed(2)), // Random temp between 20°C - 30°C
