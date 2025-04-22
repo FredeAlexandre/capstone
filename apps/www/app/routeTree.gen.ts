@@ -16,6 +16,7 @@ import { Route as AuthedImport } from './routes/_authed'
 import { Route as PublicIndexImport } from './routes/_public/index'
 import { Route as PublicAuthImport } from './routes/_public/_auth'
 import { Route as AuthedDashboardImport } from './routes/_authed/dashboard'
+import { Route as AuthedAnalyticsImport } from './routes/_authed/analytics'
 import { Route as PublicShowcaseJsonlidityImport } from './routes/_public/showcase/jsonlidity'
 import { Route as PublicShowcaseDndImport } from './routes/_public/showcase/dnd'
 import { Route as PublicShowcaseDeployerImport } from './routes/_public/showcase/deployer'
@@ -50,6 +51,12 @@ const PublicAuthRoute = PublicAuthImport.update({
 const AuthedDashboardRoute = AuthedDashboardImport.update({
   id: '/dashboard',
   path: '/dashboard',
+  getParentRoute: () => AuthedRoute,
+} as any)
+
+const AuthedAnalyticsRoute = AuthedAnalyticsImport.update({
+  id: '/analytics',
+  path: '/analytics',
   getParentRoute: () => AuthedRoute,
 } as any)
 
@@ -112,6 +119,13 @@ declare module '@tanstack/react-router' {
       fullPath: ''
       preLoaderRoute: typeof PublicImport
       parentRoute: typeof rootRoute
+    }
+    '/_authed/analytics': {
+      id: '/_authed/analytics'
+      path: '/analytics'
+      fullPath: '/analytics'
+      preLoaderRoute: typeof AuthedAnalyticsImport
+      parentRoute: typeof AuthedImport
     }
     '/_authed/dashboard': {
       id: '/_authed/dashboard'
@@ -189,10 +203,12 @@ declare module '@tanstack/react-router' {
 // Create and export the route tree
 
 interface AuthedRouteChildren {
+  AuthedAnalyticsRoute: typeof AuthedAnalyticsRoute
   AuthedDashboardRoute: typeof AuthedDashboardRoute
 }
 
 const AuthedRouteChildren: AuthedRouteChildren = {
+  AuthedAnalyticsRoute: AuthedAnalyticsRoute,
   AuthedDashboardRoute: AuthedDashboardRoute,
 }
 
@@ -238,6 +254,7 @@ const PublicRouteWithChildren =
 
 export interface FileRoutesByFullPath {
   '': typeof PublicAuthRouteWithChildren
+  '/analytics': typeof AuthedAnalyticsRoute
   '/dashboard': typeof AuthedDashboardRoute
   '/': typeof PublicIndexRoute
   '/forgot-password': typeof PublicAuthForgotPasswordRoute
@@ -251,6 +268,7 @@ export interface FileRoutesByFullPath {
 
 export interface FileRoutesByTo {
   '': typeof PublicAuthRouteWithChildren
+  '/analytics': typeof AuthedAnalyticsRoute
   '/dashboard': typeof AuthedDashboardRoute
   '/': typeof PublicIndexRoute
   '/forgot-password': typeof PublicAuthForgotPasswordRoute
@@ -266,6 +284,7 @@ export interface FileRoutesById {
   __root__: typeof rootRoute
   '/_authed': typeof AuthedRouteWithChildren
   '/_public': typeof PublicRouteWithChildren
+  '/_authed/analytics': typeof AuthedAnalyticsRoute
   '/_authed/dashboard': typeof AuthedDashboardRoute
   '/_public/_auth': typeof PublicAuthRouteWithChildren
   '/_public/': typeof PublicIndexRoute
@@ -282,6 +301,7 @@ export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
   fullPaths:
     | ''
+    | '/analytics'
     | '/dashboard'
     | '/'
     | '/forgot-password'
@@ -294,6 +314,7 @@ export interface FileRouteTypes {
   fileRoutesByTo: FileRoutesByTo
   to:
     | ''
+    | '/analytics'
     | '/dashboard'
     | '/'
     | '/forgot-password'
@@ -307,6 +328,7 @@ export interface FileRouteTypes {
     | '__root__'
     | '/_authed'
     | '/_public'
+    | '/_authed/analytics'
     | '/_authed/dashboard'
     | '/_public/_auth'
     | '/_public/'
@@ -347,6 +369,7 @@ export const routeTree = rootRoute
     "/_authed": {
       "filePath": "_authed.tsx",
       "children": [
+        "/_authed/analytics",
         "/_authed/dashboard"
       ]
     },
@@ -359,6 +382,10 @@ export const routeTree = rootRoute
         "/_public/showcase/dnd",
         "/_public/showcase/jsonlidity"
       ]
+    },
+    "/_authed/analytics": {
+      "filePath": "_authed/analytics.tsx",
+      "parent": "/_authed"
     },
     "/_authed/dashboard": {
       "filePath": "_authed/dashboard.tsx",
