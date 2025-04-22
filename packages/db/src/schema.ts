@@ -5,6 +5,7 @@ import {
   pgTable,
   text,
   timestamp,
+  serial
 } from "drizzle-orm/pg-core";
 
 export const user = pgTable("user", {
@@ -105,3 +106,10 @@ export const hiveDataRelations = relations(hiveData, ({ one }) => ({
     references: [hive.id],
   }),
 }));
+
+export const sensorData = pgTable("sensorData", {
+  id: serial("id").primaryKey(),
+  topic: text("topic").notNull(),
+  value: text("value").notNull(),
+  createdAt: timestamp("createdAt").notNull().defaultNow(),
+});

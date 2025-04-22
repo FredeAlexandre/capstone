@@ -1,5 +1,5 @@
-import { BentoGrid } from "./components/bento-grid"
-import { MetricsGrid } from "./components/metrics-grid"
+
+import { TemperatureChart } from "./components/temperature-chart"
 
 function Dashboard() {
     return <div className="min-h-screen bg-background">
@@ -10,9 +10,7 @@ function Dashboard() {
           Real-time sensor data from your hive
         </p>
       </div>
-
-      <MetricsGrid />
-      <BentoGrid />
+      <TemperatureChart />
     </div>
   </div>
 }
