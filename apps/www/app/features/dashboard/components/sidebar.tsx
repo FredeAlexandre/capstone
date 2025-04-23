@@ -18,6 +18,7 @@ import {
   TooltipProvider, 
   TooltipTrigger 
 } from '@captsone/ui/tooltip';
+import { Link } from '@tanstack/react-router';
 
 interface SidebarProps {
   open: boolean;
@@ -29,7 +30,7 @@ interface NavItemProps {
   active?: boolean;
   expanded?: boolean;
   children?: { label: string; href: string }[];
-  href?: string;
+  href: string;
 }
 
 const NavItem = ({ 
@@ -38,7 +39,7 @@ const NavItem = ({
   active, 
   expanded, 
   children,
-  href = "#" 
+  href
 }: NavItemProps) => {
   const [isOpen, setIsOpen] = useState(false);
 
@@ -56,14 +57,15 @@ const NavItem = ({
                 "w-full justify-start gap-2 mb-1",
                 active && "bg-secondary font-medium"
               )}
+              asChild={!hasChildren}
               onClick={() => hasChildren && setIsOpen(!isOpen)}
             >
-              <Icon className={cn("h-5 w-5", active && "text-amber-500")} />
-              {expanded && (
-                <>
-                  <span className="grow text-left">{label}</span>
-                  {hasChildren && (
-                    <ChevronRight 
+              {hasChildren ? (<><Icon className={cn("h-5 w-5", active && "text-amber-500")} />
+                {expanded && (
+                  <>
+                    <span className="grow text-left">{label}</span>
+                    {hasChildren && (
+                      <ChevronRight 
                       className={cn(
                         "h-4 w-4 shrink-0 text-muted-foreground transition-transform", 
                         isOpen && "rotate-90"
@@ -71,7 +73,23 @@ const NavItem = ({
                     />
                   )}
                 </>
-              )}
+              )}</>) : 
+              <Link to={href}><Icon className={cn("h-5 w-5", active && "text-amber-500")} />
+              {expanded && (
+                <>
+                  <span className="grow text-left">{label}</span>
+                  {hasChildren && (
+                    <ChevronRight 
+                    className={cn(
+                      "h-4 w-4 shrink-0 text-muted-foreground transition-transform", 
+                      isOpen && "rotate-90"
+                    )} 
+                  />
+                )}
+              </>
+            )}
+                
+            </Link>}
             </Button>
           </TooltipTrigger>
           {!expanded && (
@@ -90,8 +108,11 @@ const NavItem = ({
               variant="ghost"
               size="sm"
               className="w-full justify-start pl-2 text-muted-foreground hover:text-foreground text-sm"
+              asChild
             >
-              {child.label}
+              <Link to={child.href}>
+                {child.label}
+              </Link>
             </Button>
           ))}
         </div>
@@ -105,38 +126,43 @@ const Sidebar = ({ open }: SidebarProps) => {
     { 
       icon: LayoutDashboard, 
       label: "Overview", 
-      active: true 
+      active: true,
+      href: "/dashboard"
     },
     { 
       icon: Hexagon, 
       label: "Hives", 
       children: [
-        { label: "All Hives", href: "#" },
-        { label: "Add New Hive", href: "#" },
-        { label: "Hive Groups", href: "#" }
-      ]
+        { label: "All Hives", href: "/all-hives" },
+        { label: "Add New Hive", href: "/add-new-hive" }
+      ],
+      href: "#"
     },
     { 
       icon: BarChart3, 
-      label: "Analytics" 
+      label: "Analytics",
+      href: "/analytics" 
     },
     { 
       icon: AlertTriangle, 
-      label: "Alerts" 
+      label: "Alerts",
+      href: "/alerts" 
     },
     { 
       icon: Calendar, 
-      label: "Schedule" 
+      label: "Schedule",
+      href: "/schedule" 
     },
     { 
       icon: FileText, 
-      label: "Reports" 
+      label: "Reports",
+      href: "/reports" 
     }
   ];
   
   const bottomNavItems = [
-    { icon: Users, label: "Team" },
-    { icon: Settings, label: "Settings" }
+    { icon: Users, label: "Team", href: "/team"  },
+    { icon: Settings, label: "Settings", href: "/settings" }
   ];
 
   return (
@@ -156,6 +182,7 @@ const Sidebar = ({ open }: SidebarProps) => {
                 icon={item.icon} 
                 label={item.label} 
                 active={item.active} 
+                href={item.href}
                 expanded={open}
                 children={item.children} 
               />
@@ -166,7 +193,7 @@ const Sidebar = ({ open }: SidebarProps) => {
           {open && <h2 className="text-sm font-medium mb-2 px-4 text-muted-foreground">Settings</h2>}
           <div className="space-y-1">
             {bottomNavItems.map((item, idx) => (
-              <NavItem key={idx} icon={item.icon} label={item.label} expanded={open} />
+              <NavItem key={idx} icon={item.icon} label={item.label} href={item.href} expanded={open} />
             ))}
           </div>
         </div>
