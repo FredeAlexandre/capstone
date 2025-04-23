@@ -15,8 +15,15 @@ import { Route as PublicImport } from './routes/_public'
 import { Route as AuthedImport } from './routes/_authed'
 import { Route as PublicIndexImport } from './routes/_public/index'
 import { Route as PublicAuthImport } from './routes/_public/_auth'
+import { Route as AuthedTeamImport } from './routes/_authed/team'
+import { Route as AuthedSettingsImport } from './routes/_authed/settings'
+import { Route as AuthedScheduleImport } from './routes/_authed/schedule'
+import { Route as AuthedReportsImport } from './routes/_authed/reports'
 import { Route as AuthedDashboardImport } from './routes/_authed/dashboard'
 import { Route as AuthedAnalyticsImport } from './routes/_authed/analytics'
+import { Route as AuthedAllHivesImport } from './routes/_authed/all-hives'
+import { Route as AuthedAlertsImport } from './routes/_authed/alerts'
+import { Route as AuthedAddNewHiveImport } from './routes/_authed/add-new-hive'
 import { Route as PublicShowcaseJsonlidityImport } from './routes/_public/showcase/jsonlidity'
 import { Route as PublicShowcaseDndImport } from './routes/_public/showcase/dnd'
 import { Route as PublicShowcaseDeployerImport } from './routes/_public/showcase/deployer'
@@ -48,6 +55,30 @@ const PublicAuthRoute = PublicAuthImport.update({
   getParentRoute: () => PublicRoute,
 } as any)
 
+const AuthedTeamRoute = AuthedTeamImport.update({
+  id: '/team',
+  path: '/team',
+  getParentRoute: () => AuthedRoute,
+} as any)
+
+const AuthedSettingsRoute = AuthedSettingsImport.update({
+  id: '/settings',
+  path: '/settings',
+  getParentRoute: () => AuthedRoute,
+} as any)
+
+const AuthedScheduleRoute = AuthedScheduleImport.update({
+  id: '/schedule',
+  path: '/schedule',
+  getParentRoute: () => AuthedRoute,
+} as any)
+
+const AuthedReportsRoute = AuthedReportsImport.update({
+  id: '/reports',
+  path: '/reports',
+  getParentRoute: () => AuthedRoute,
+} as any)
+
 const AuthedDashboardRoute = AuthedDashboardImport.update({
   id: '/dashboard',
   path: '/dashboard',
@@ -57,6 +88,24 @@ const AuthedDashboardRoute = AuthedDashboardImport.update({
 const AuthedAnalyticsRoute = AuthedAnalyticsImport.update({
   id: '/analytics',
   path: '/analytics',
+  getParentRoute: () => AuthedRoute,
+} as any)
+
+const AuthedAllHivesRoute = AuthedAllHivesImport.update({
+  id: '/all-hives',
+  path: '/all-hives',
+  getParentRoute: () => AuthedRoute,
+} as any)
+
+const AuthedAlertsRoute = AuthedAlertsImport.update({
+  id: '/alerts',
+  path: '/alerts',
+  getParentRoute: () => AuthedRoute,
+} as any)
+
+const AuthedAddNewHiveRoute = AuthedAddNewHiveImport.update({
+  id: '/add-new-hive',
+  path: '/add-new-hive',
   getParentRoute: () => AuthedRoute,
 } as any)
 
@@ -120,6 +169,27 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof PublicImport
       parentRoute: typeof rootRoute
     }
+    '/_authed/add-new-hive': {
+      id: '/_authed/add-new-hive'
+      path: '/add-new-hive'
+      fullPath: '/add-new-hive'
+      preLoaderRoute: typeof AuthedAddNewHiveImport
+      parentRoute: typeof AuthedImport
+    }
+    '/_authed/alerts': {
+      id: '/_authed/alerts'
+      path: '/alerts'
+      fullPath: '/alerts'
+      preLoaderRoute: typeof AuthedAlertsImport
+      parentRoute: typeof AuthedImport
+    }
+    '/_authed/all-hives': {
+      id: '/_authed/all-hives'
+      path: '/all-hives'
+      fullPath: '/all-hives'
+      preLoaderRoute: typeof AuthedAllHivesImport
+      parentRoute: typeof AuthedImport
+    }
     '/_authed/analytics': {
       id: '/_authed/analytics'
       path: '/analytics'
@@ -132,6 +202,34 @@ declare module '@tanstack/react-router' {
       path: '/dashboard'
       fullPath: '/dashboard'
       preLoaderRoute: typeof AuthedDashboardImport
+      parentRoute: typeof AuthedImport
+    }
+    '/_authed/reports': {
+      id: '/_authed/reports'
+      path: '/reports'
+      fullPath: '/reports'
+      preLoaderRoute: typeof AuthedReportsImport
+      parentRoute: typeof AuthedImport
+    }
+    '/_authed/schedule': {
+      id: '/_authed/schedule'
+      path: '/schedule'
+      fullPath: '/schedule'
+      preLoaderRoute: typeof AuthedScheduleImport
+      parentRoute: typeof AuthedImport
+    }
+    '/_authed/settings': {
+      id: '/_authed/settings'
+      path: '/settings'
+      fullPath: '/settings'
+      preLoaderRoute: typeof AuthedSettingsImport
+      parentRoute: typeof AuthedImport
+    }
+    '/_authed/team': {
+      id: '/_authed/team'
+      path: '/team'
+      fullPath: '/team'
+      preLoaderRoute: typeof AuthedTeamImport
       parentRoute: typeof AuthedImport
     }
     '/_public/_auth': {
@@ -203,13 +301,27 @@ declare module '@tanstack/react-router' {
 // Create and export the route tree
 
 interface AuthedRouteChildren {
+  AuthedAddNewHiveRoute: typeof AuthedAddNewHiveRoute
+  AuthedAlertsRoute: typeof AuthedAlertsRoute
+  AuthedAllHivesRoute: typeof AuthedAllHivesRoute
   AuthedAnalyticsRoute: typeof AuthedAnalyticsRoute
   AuthedDashboardRoute: typeof AuthedDashboardRoute
+  AuthedReportsRoute: typeof AuthedReportsRoute
+  AuthedScheduleRoute: typeof AuthedScheduleRoute
+  AuthedSettingsRoute: typeof AuthedSettingsRoute
+  AuthedTeamRoute: typeof AuthedTeamRoute
 }
 
 const AuthedRouteChildren: AuthedRouteChildren = {
+  AuthedAddNewHiveRoute: AuthedAddNewHiveRoute,
+  AuthedAlertsRoute: AuthedAlertsRoute,
+  AuthedAllHivesRoute: AuthedAllHivesRoute,
   AuthedAnalyticsRoute: AuthedAnalyticsRoute,
   AuthedDashboardRoute: AuthedDashboardRoute,
+  AuthedReportsRoute: AuthedReportsRoute,
+  AuthedScheduleRoute: AuthedScheduleRoute,
+  AuthedSettingsRoute: AuthedSettingsRoute,
+  AuthedTeamRoute: AuthedTeamRoute,
 }
 
 const AuthedRouteWithChildren =
@@ -254,8 +366,15 @@ const PublicRouteWithChildren =
 
 export interface FileRoutesByFullPath {
   '': typeof PublicAuthRouteWithChildren
+  '/add-new-hive': typeof AuthedAddNewHiveRoute
+  '/alerts': typeof AuthedAlertsRoute
+  '/all-hives': typeof AuthedAllHivesRoute
   '/analytics': typeof AuthedAnalyticsRoute
   '/dashboard': typeof AuthedDashboardRoute
+  '/reports': typeof AuthedReportsRoute
+  '/schedule': typeof AuthedScheduleRoute
+  '/settings': typeof AuthedSettingsRoute
+  '/team': typeof AuthedTeamRoute
   '/': typeof PublicIndexRoute
   '/forgot-password': typeof PublicAuthForgotPasswordRoute
   '/reset-password': typeof PublicAuthResetPasswordRoute
@@ -268,8 +387,15 @@ export interface FileRoutesByFullPath {
 
 export interface FileRoutesByTo {
   '': typeof PublicAuthRouteWithChildren
+  '/add-new-hive': typeof AuthedAddNewHiveRoute
+  '/alerts': typeof AuthedAlertsRoute
+  '/all-hives': typeof AuthedAllHivesRoute
   '/analytics': typeof AuthedAnalyticsRoute
   '/dashboard': typeof AuthedDashboardRoute
+  '/reports': typeof AuthedReportsRoute
+  '/schedule': typeof AuthedScheduleRoute
+  '/settings': typeof AuthedSettingsRoute
+  '/team': typeof AuthedTeamRoute
   '/': typeof PublicIndexRoute
   '/forgot-password': typeof PublicAuthForgotPasswordRoute
   '/reset-password': typeof PublicAuthResetPasswordRoute
@@ -284,8 +410,15 @@ export interface FileRoutesById {
   __root__: typeof rootRoute
   '/_authed': typeof AuthedRouteWithChildren
   '/_public': typeof PublicRouteWithChildren
+  '/_authed/add-new-hive': typeof AuthedAddNewHiveRoute
+  '/_authed/alerts': typeof AuthedAlertsRoute
+  '/_authed/all-hives': typeof AuthedAllHivesRoute
   '/_authed/analytics': typeof AuthedAnalyticsRoute
   '/_authed/dashboard': typeof AuthedDashboardRoute
+  '/_authed/reports': typeof AuthedReportsRoute
+  '/_authed/schedule': typeof AuthedScheduleRoute
+  '/_authed/settings': typeof AuthedSettingsRoute
+  '/_authed/team': typeof AuthedTeamRoute
   '/_public/_auth': typeof PublicAuthRouteWithChildren
   '/_public/': typeof PublicIndexRoute
   '/_public/_auth/forgot-password': typeof PublicAuthForgotPasswordRoute
@@ -301,8 +434,15 @@ export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
   fullPaths:
     | ''
+    | '/add-new-hive'
+    | '/alerts'
+    | '/all-hives'
     | '/analytics'
     | '/dashboard'
+    | '/reports'
+    | '/schedule'
+    | '/settings'
+    | '/team'
     | '/'
     | '/forgot-password'
     | '/reset-password'
@@ -314,8 +454,15 @@ export interface FileRouteTypes {
   fileRoutesByTo: FileRoutesByTo
   to:
     | ''
+    | '/add-new-hive'
+    | '/alerts'
+    | '/all-hives'
     | '/analytics'
     | '/dashboard'
+    | '/reports'
+    | '/schedule'
+    | '/settings'
+    | '/team'
     | '/'
     | '/forgot-password'
     | '/reset-password'
@@ -328,8 +475,15 @@ export interface FileRouteTypes {
     | '__root__'
     | '/_authed'
     | '/_public'
+    | '/_authed/add-new-hive'
+    | '/_authed/alerts'
+    | '/_authed/all-hives'
     | '/_authed/analytics'
     | '/_authed/dashboard'
+    | '/_authed/reports'
+    | '/_authed/schedule'
+    | '/_authed/settings'
+    | '/_authed/team'
     | '/_public/_auth'
     | '/_public/'
     | '/_public/_auth/forgot-password'
@@ -369,8 +523,15 @@ export const routeTree = rootRoute
     "/_authed": {
       "filePath": "_authed.tsx",
       "children": [
+        "/_authed/add-new-hive",
+        "/_authed/alerts",
+        "/_authed/all-hives",
         "/_authed/analytics",
-        "/_authed/dashboard"
+        "/_authed/dashboard",
+        "/_authed/reports",
+        "/_authed/schedule",
+        "/_authed/settings",
+        "/_authed/team"
       ]
     },
     "/_public": {
@@ -383,12 +544,40 @@ export const routeTree = rootRoute
         "/_public/showcase/jsonlidity"
       ]
     },
+    "/_authed/add-new-hive": {
+      "filePath": "_authed/add-new-hive.tsx",
+      "parent": "/_authed"
+    },
+    "/_authed/alerts": {
+      "filePath": "_authed/alerts.tsx",
+      "parent": "/_authed"
+    },
+    "/_authed/all-hives": {
+      "filePath": "_authed/all-hives.tsx",
+      "parent": "/_authed"
+    },
     "/_authed/analytics": {
       "filePath": "_authed/analytics.tsx",
       "parent": "/_authed"
     },
     "/_authed/dashboard": {
       "filePath": "_authed/dashboard.tsx",
+      "parent": "/_authed"
+    },
+    "/_authed/reports": {
+      "filePath": "_authed/reports.tsx",
+      "parent": "/_authed"
+    },
+    "/_authed/schedule": {
+      "filePath": "_authed/schedule.tsx",
+      "parent": "/_authed"
+    },
+    "/_authed/settings": {
+      "filePath": "_authed/settings.tsx",
+      "parent": "/_authed"
+    },
+    "/_authed/team": {
+      "filePath": "_authed/team.tsx",
       "parent": "/_authed"
     },
     "/_public/_auth": {
