@@ -3,6 +3,8 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@capt
 import { Thermometer, Droplets, Users } from "lucide-react";
 import { hives } from '../../data/hives';
 
+import { Link } from '@tanstack/react-router';
+
 export const Route = createFileRoute('/_authed/all-hives')({
   component: RouteComponent,
 })
@@ -17,6 +19,7 @@ function RouteComponent() {
 
         <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-3">
           {hives.map((hive) => (
+            <Link to="/hive">
             <Card key={hive.id} className="hover:bg-muted/60 transition-colors">
               <CardHeader>
                 <CardTitle className="flex items-center justify-between">
@@ -65,6 +68,7 @@ function RouteComponent() {
                 </div>
               </CardContent>
             </Card>
+            </Link>
           ))}
         </div>
       </div>

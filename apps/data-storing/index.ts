@@ -20,6 +20,8 @@ client.on("message", async (topic, message) => {
   const value = message.toString();
   console.log(`📥 Received on [${topic}] : ${value}`);
 
+  if (value === "-127") return
+
   try {
     await db.insert(sensorData).values({
       topic,

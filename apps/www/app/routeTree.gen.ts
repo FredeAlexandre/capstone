@@ -19,6 +19,7 @@ import { Route as AuthedTeamImport } from './routes/_authed/team'
 import { Route as AuthedSettingsImport } from './routes/_authed/settings'
 import { Route as AuthedScheduleImport } from './routes/_authed/schedule'
 import { Route as AuthedReportsImport } from './routes/_authed/reports'
+import { Route as AuthedHiveImport } from './routes/_authed/hive'
 import { Route as AuthedDashboardImport } from './routes/_authed/dashboard'
 import { Route as AuthedAnalyticsImport } from './routes/_authed/analytics'
 import { Route as AuthedAllHivesImport } from './routes/_authed/all-hives'
@@ -73,6 +74,12 @@ const AuthedScheduleRoute = AuthedScheduleImport.update({
 const AuthedReportsRoute = AuthedReportsImport.update({
   id: '/reports',
   path: '/reports',
+  getParentRoute: () => AuthedRoute,
+} as any)
+
+const AuthedHiveRoute = AuthedHiveImport.update({
+  id: '/hive',
+  path: '/hive',
   getParentRoute: () => AuthedRoute,
 } as any)
 
@@ -183,6 +190,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AuthedDashboardImport
       parentRoute: typeof AuthedImport
     }
+    '/_authed/hive': {
+      id: '/_authed/hive'
+      path: '/hive'
+      fullPath: '/hive'
+      preLoaderRoute: typeof AuthedHiveImport
+      parentRoute: typeof AuthedImport
+    }
     '/_authed/reports': {
       id: '/_authed/reports'
       path: '/reports'
@@ -264,6 +278,7 @@ interface AuthedRouteChildren {
   AuthedAllHivesRoute: typeof AuthedAllHivesRoute
   AuthedAnalyticsRoute: typeof AuthedAnalyticsRoute
   AuthedDashboardRoute: typeof AuthedDashboardRoute
+  AuthedHiveRoute: typeof AuthedHiveRoute
   AuthedReportsRoute: typeof AuthedReportsRoute
   AuthedScheduleRoute: typeof AuthedScheduleRoute
   AuthedSettingsRoute: typeof AuthedSettingsRoute
@@ -276,6 +291,7 @@ const AuthedRouteChildren: AuthedRouteChildren = {
   AuthedAllHivesRoute: AuthedAllHivesRoute,
   AuthedAnalyticsRoute: AuthedAnalyticsRoute,
   AuthedDashboardRoute: AuthedDashboardRoute,
+  AuthedHiveRoute: AuthedHiveRoute,
   AuthedReportsRoute: AuthedReportsRoute,
   AuthedScheduleRoute: AuthedScheduleRoute,
   AuthedSettingsRoute: AuthedSettingsRoute,
@@ -323,6 +339,7 @@ export interface FileRoutesByFullPath {
   '/all-hives': typeof AuthedAllHivesRoute
   '/analytics': typeof AuthedAnalyticsRoute
   '/dashboard': typeof AuthedDashboardRoute
+  '/hive': typeof AuthedHiveRoute
   '/reports': typeof AuthedReportsRoute
   '/schedule': typeof AuthedScheduleRoute
   '/settings': typeof AuthedSettingsRoute
@@ -341,6 +358,7 @@ export interface FileRoutesByTo {
   '/all-hives': typeof AuthedAllHivesRoute
   '/analytics': typeof AuthedAnalyticsRoute
   '/dashboard': typeof AuthedDashboardRoute
+  '/hive': typeof AuthedHiveRoute
   '/reports': typeof AuthedReportsRoute
   '/schedule': typeof AuthedScheduleRoute
   '/settings': typeof AuthedSettingsRoute
@@ -361,6 +379,7 @@ export interface FileRoutesById {
   '/_authed/all-hives': typeof AuthedAllHivesRoute
   '/_authed/analytics': typeof AuthedAnalyticsRoute
   '/_authed/dashboard': typeof AuthedDashboardRoute
+  '/_authed/hive': typeof AuthedHiveRoute
   '/_authed/reports': typeof AuthedReportsRoute
   '/_authed/schedule': typeof AuthedScheduleRoute
   '/_authed/settings': typeof AuthedSettingsRoute
@@ -382,6 +401,7 @@ export interface FileRouteTypes {
     | '/all-hives'
     | '/analytics'
     | '/dashboard'
+    | '/hive'
     | '/reports'
     | '/schedule'
     | '/settings'
@@ -399,6 +419,7 @@ export interface FileRouteTypes {
     | '/all-hives'
     | '/analytics'
     | '/dashboard'
+    | '/hive'
     | '/reports'
     | '/schedule'
     | '/settings'
@@ -417,6 +438,7 @@ export interface FileRouteTypes {
     | '/_authed/all-hives'
     | '/_authed/analytics'
     | '/_authed/dashboard'
+    | '/_authed/hive'
     | '/_authed/reports'
     | '/_authed/schedule'
     | '/_authed/settings'
@@ -462,6 +484,7 @@ export const routeTree = rootRoute
         "/_authed/all-hives",
         "/_authed/analytics",
         "/_authed/dashboard",
+        "/_authed/hive",
         "/_authed/reports",
         "/_authed/schedule",
         "/_authed/settings",
@@ -493,6 +516,10 @@ export const routeTree = rootRoute
     },
     "/_authed/dashboard": {
       "filePath": "_authed/dashboard.tsx",
+      "parent": "/_authed"
+    },
+    "/_authed/hive": {
+      "filePath": "_authed/hive.tsx",
       "parent": "/_authed"
     },
     "/_authed/reports": {

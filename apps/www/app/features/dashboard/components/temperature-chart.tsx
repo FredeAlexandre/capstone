@@ -74,7 +74,7 @@ export function TemperatureChart() {
       </CardHeader>
       <CardContent>
         {isLoading ? (
-          <Skeleton className="h-[600px] w-full" />
+          <Skeleton className="w-full" />
         ) : (
           <Chart data={data} />
         )}
