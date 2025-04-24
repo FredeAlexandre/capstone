@@ -24,9 +24,6 @@ import { Route as AuthedAnalyticsImport } from './routes/_authed/analytics'
 import { Route as AuthedAllHivesImport } from './routes/_authed/all-hives'
 import { Route as AuthedAlertsImport } from './routes/_authed/alerts'
 import { Route as AuthedAddNewHiveImport } from './routes/_authed/add-new-hive'
-import { Route as PublicShowcaseJsonlidityImport } from './routes/_public/showcase/jsonlidity'
-import { Route as PublicShowcaseDndImport } from './routes/_public/showcase/dnd'
-import { Route as PublicShowcaseDeployerImport } from './routes/_public/showcase/deployer'
 import { Route as PublicAuthSignupImport } from './routes/_public/_auth/signup'
 import { Route as PublicAuthSigninImport } from './routes/_public/_auth/signin'
 import { Route as PublicAuthResetPasswordImport } from './routes/_public/_auth/reset-password'
@@ -107,24 +104,6 @@ const AuthedAddNewHiveRoute = AuthedAddNewHiveImport.update({
   id: '/add-new-hive',
   path: '/add-new-hive',
   getParentRoute: () => AuthedRoute,
-} as any)
-
-const PublicShowcaseJsonlidityRoute = PublicShowcaseJsonlidityImport.update({
-  id: '/showcase/jsonlidity',
-  path: '/showcase/jsonlidity',
-  getParentRoute: () => PublicRoute,
-} as any)
-
-const PublicShowcaseDndRoute = PublicShowcaseDndImport.update({
-  id: '/showcase/dnd',
-  path: '/showcase/dnd',
-  getParentRoute: () => PublicRoute,
-} as any)
-
-const PublicShowcaseDeployerRoute = PublicShowcaseDeployerImport.update({
-  id: '/showcase/deployer',
-  path: '/showcase/deployer',
-  getParentRoute: () => PublicRoute,
 } as any)
 
 const PublicAuthSignupRoute = PublicAuthSignupImport.update({
@@ -274,27 +253,6 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof PublicAuthSignupImport
       parentRoute: typeof PublicAuthImport
     }
-    '/_public/showcase/deployer': {
-      id: '/_public/showcase/deployer'
-      path: '/showcase/deployer'
-      fullPath: '/showcase/deployer'
-      preLoaderRoute: typeof PublicShowcaseDeployerImport
-      parentRoute: typeof PublicImport
-    }
-    '/_public/showcase/dnd': {
-      id: '/_public/showcase/dnd'
-      path: '/showcase/dnd'
-      fullPath: '/showcase/dnd'
-      preLoaderRoute: typeof PublicShowcaseDndImport
-      parentRoute: typeof PublicImport
-    }
-    '/_public/showcase/jsonlidity': {
-      id: '/_public/showcase/jsonlidity'
-      path: '/showcase/jsonlidity'
-      fullPath: '/showcase/jsonlidity'
-      preLoaderRoute: typeof PublicShowcaseJsonlidityImport
-      parentRoute: typeof PublicImport
-    }
   }
 }
 
@@ -348,17 +306,11 @@ const PublicAuthRouteWithChildren = PublicAuthRoute._addFileChildren(
 interface PublicRouteChildren {
   PublicAuthRoute: typeof PublicAuthRouteWithChildren
   PublicIndexRoute: typeof PublicIndexRoute
-  PublicShowcaseDeployerRoute: typeof PublicShowcaseDeployerRoute
-  PublicShowcaseDndRoute: typeof PublicShowcaseDndRoute
-  PublicShowcaseJsonlidityRoute: typeof PublicShowcaseJsonlidityRoute
 }
 
 const PublicRouteChildren: PublicRouteChildren = {
   PublicAuthRoute: PublicAuthRouteWithChildren,
   PublicIndexRoute: PublicIndexRoute,
-  PublicShowcaseDeployerRoute: PublicShowcaseDeployerRoute,
-  PublicShowcaseDndRoute: PublicShowcaseDndRoute,
-  PublicShowcaseJsonlidityRoute: PublicShowcaseJsonlidityRoute,
 }
 
 const PublicRouteWithChildren =
@@ -380,9 +332,6 @@ export interface FileRoutesByFullPath {
   '/reset-password': typeof PublicAuthResetPasswordRoute
   '/signin': typeof PublicAuthSigninRoute
   '/signup': typeof PublicAuthSignupRoute
-  '/showcase/deployer': typeof PublicShowcaseDeployerRoute
-  '/showcase/dnd': typeof PublicShowcaseDndRoute
-  '/showcase/jsonlidity': typeof PublicShowcaseJsonlidityRoute
 }
 
 export interface FileRoutesByTo {
@@ -401,9 +350,6 @@ export interface FileRoutesByTo {
   '/reset-password': typeof PublicAuthResetPasswordRoute
   '/signin': typeof PublicAuthSigninRoute
   '/signup': typeof PublicAuthSignupRoute
-  '/showcase/deployer': typeof PublicShowcaseDeployerRoute
-  '/showcase/dnd': typeof PublicShowcaseDndRoute
-  '/showcase/jsonlidity': typeof PublicShowcaseJsonlidityRoute
 }
 
 export interface FileRoutesById {
@@ -425,9 +371,6 @@ export interface FileRoutesById {
   '/_public/_auth/reset-password': typeof PublicAuthResetPasswordRoute
   '/_public/_auth/signin': typeof PublicAuthSigninRoute
   '/_public/_auth/signup': typeof PublicAuthSignupRoute
-  '/_public/showcase/deployer': typeof PublicShowcaseDeployerRoute
-  '/_public/showcase/dnd': typeof PublicShowcaseDndRoute
-  '/_public/showcase/jsonlidity': typeof PublicShowcaseJsonlidityRoute
 }
 
 export interface FileRouteTypes {
@@ -448,9 +391,6 @@ export interface FileRouteTypes {
     | '/reset-password'
     | '/signin'
     | '/signup'
-    | '/showcase/deployer'
-    | '/showcase/dnd'
-    | '/showcase/jsonlidity'
   fileRoutesByTo: FileRoutesByTo
   to:
     | ''
@@ -468,9 +408,6 @@ export interface FileRouteTypes {
     | '/reset-password'
     | '/signin'
     | '/signup'
-    | '/showcase/deployer'
-    | '/showcase/dnd'
-    | '/showcase/jsonlidity'
   id:
     | '__root__'
     | '/_authed'
@@ -490,9 +427,6 @@ export interface FileRouteTypes {
     | '/_public/_auth/reset-password'
     | '/_public/_auth/signin'
     | '/_public/_auth/signup'
-    | '/_public/showcase/deployer'
-    | '/_public/showcase/dnd'
-    | '/_public/showcase/jsonlidity'
   fileRoutesById: FileRoutesById
 }
 
@@ -538,10 +472,7 @@ export const routeTree = rootRoute
       "filePath": "_public.tsx",
       "children": [
         "/_public/_auth",
-        "/_public/",
-        "/_public/showcase/deployer",
-        "/_public/showcase/dnd",
-        "/_public/showcase/jsonlidity"
+        "/_public/"
       ]
     },
     "/_authed/add-new-hive": {
@@ -609,18 +540,6 @@ export const routeTree = rootRoute
     "/_public/_auth/signup": {
       "filePath": "_public/_auth/signup.tsx",
       "parent": "/_public/_auth"
-    },
-    "/_public/showcase/deployer": {
-      "filePath": "_public/showcase/deployer.tsx",
-      "parent": "/_public"
-    },
-    "/_public/showcase/dnd": {
-      "filePath": "_public/showcase/dnd.tsx",
-      "parent": "/_public"
-    },
-    "/_public/showcase/jsonlidity": {
-      "filePath": "_public/showcase/jsonlidity.tsx",
-      "parent": "/_public"
     }
   }
 }
