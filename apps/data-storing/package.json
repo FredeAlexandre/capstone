@@ -1,0 +1,18 @@
+{
+  "name": "data-storing",
+  "type": "module",
+  "private": true,
+  "scripts": {
+    "start": "tsx --env-file=../../.env ./index.ts"
+  },
+  "dependencies": {
+    "@captsone/db": "workspace:*",
+    "mqtt": "^5.10.4"
+  },
+  "peerDependencies": {
+    "typescript": "^5"
+  },
+  "devDependencies": {
+    "tsx": "^4.19.2"
+  }
+}

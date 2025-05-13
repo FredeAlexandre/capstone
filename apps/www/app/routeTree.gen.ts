@@ -15,10 +15,16 @@ import { Route as PublicImport } from './routes/_public'
 import { Route as AuthedImport } from './routes/_authed'
 import { Route as PublicIndexImport } from './routes/_public/index'
 import { Route as PublicAuthImport } from './routes/_public/_auth'
+import { Route as AuthedTeamImport } from './routes/_authed/team'
+import { Route as AuthedSettingsImport } from './routes/_authed/settings'
+import { Route as AuthedScheduleImport } from './routes/_authed/schedule'
+import { Route as AuthedReportsImport } from './routes/_authed/reports'
+import { Route as AuthedHiveImport } from './routes/_authed/hive'
 import { Route as AuthedDashboardImport } from './routes/_authed/dashboard'
-import { Route as PublicShowcaseJsonlidityImport } from './routes/_public/showcase/jsonlidity'
-import { Route as PublicShowcaseDndImport } from './routes/_public/showcase/dnd'
-import { Route as PublicShowcaseDeployerImport } from './routes/_public/showcase/deployer'
+import { Route as AuthedAnalyticsImport } from './routes/_authed/analytics'
+import { Route as AuthedAllHivesImport } from './routes/_authed/all-hives'
+import { Route as AuthedAlertsImport } from './routes/_authed/alerts'
+import { Route as AuthedAddNewHiveImport } from './routes/_authed/add-new-hive'
 import { Route as PublicAuthSignupImport } from './routes/_public/_auth/signup'
 import { Route as PublicAuthSigninImport } from './routes/_public/_auth/signin'
 import { Route as PublicAuthResetPasswordImport } from './routes/_public/_auth/reset-password'
@@ -47,28 +53,64 @@ const PublicAuthRoute = PublicAuthImport.update({
   getParentRoute: () => PublicRoute,
 } as any)
 
+const AuthedTeamRoute = AuthedTeamImport.update({
+  id: '/team',
+  path: '/team',
+  getParentRoute: () => AuthedRoute,
+} as any)
+
+const AuthedSettingsRoute = AuthedSettingsImport.update({
+  id: '/settings',
+  path: '/settings',
+  getParentRoute: () => AuthedRoute,
+} as any)
+
+const AuthedScheduleRoute = AuthedScheduleImport.update({
+  id: '/schedule',
+  path: '/schedule',
+  getParentRoute: () => AuthedRoute,
+} as any)
+
+const AuthedReportsRoute = AuthedReportsImport.update({
+  id: '/reports',
+  path: '/reports',
+  getParentRoute: () => AuthedRoute,
+} as any)
+
+const AuthedHiveRoute = AuthedHiveImport.update({
+  id: '/hive',
+  path: '/hive',
+  getParentRoute: () => AuthedRoute,
+} as any)
+
 const AuthedDashboardRoute = AuthedDashboardImport.update({
   id: '/dashboard',
   path: '/dashboard',
   getParentRoute: () => AuthedRoute,
 } as any)
 
-const PublicShowcaseJsonlidityRoute = PublicShowcaseJsonlidityImport.update({
-  id: '/showcase/jsonlidity',
-  path: '/showcase/jsonlidity',
-  getParentRoute: () => PublicRoute,
+const AuthedAnalyticsRoute = AuthedAnalyticsImport.update({
+  id: '/analytics',
+  path: '/analytics',
+  getParentRoute: () => AuthedRoute,
 } as any)
 
-const PublicShowcaseDndRoute = PublicShowcaseDndImport.update({
-  id: '/showcase/dnd',
-  path: '/showcase/dnd',
-  getParentRoute: () => PublicRoute,
+const AuthedAllHivesRoute = AuthedAllHivesImport.update({
+  id: '/all-hives',
+  path: '/all-hives',
+  getParentRoute: () => AuthedRoute,
 } as any)
 
-const PublicShowcaseDeployerRoute = PublicShowcaseDeployerImport.update({
-  id: '/showcase/deployer',
-  path: '/showcase/deployer',
-  getParentRoute: () => PublicRoute,
+const AuthedAlertsRoute = AuthedAlertsImport.update({
+  id: '/alerts',
+  path: '/alerts',
+  getParentRoute: () => AuthedRoute,
+} as any)
+
+const AuthedAddNewHiveRoute = AuthedAddNewHiveImport.update({
+  id: '/add-new-hive',
+  path: '/add-new-hive',
+  getParentRoute: () => AuthedRoute,
 } as any)
 
 const PublicAuthSignupRoute = PublicAuthSignupImport.update({
@@ -113,11 +155,74 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof PublicImport
       parentRoute: typeof rootRoute
     }
+    '/_authed/add-new-hive': {
+      id: '/_authed/add-new-hive'
+      path: '/add-new-hive'
+      fullPath: '/add-new-hive'
+      preLoaderRoute: typeof AuthedAddNewHiveImport
+      parentRoute: typeof AuthedImport
+    }
+    '/_authed/alerts': {
+      id: '/_authed/alerts'
+      path: '/alerts'
+      fullPath: '/alerts'
+      preLoaderRoute: typeof AuthedAlertsImport
+      parentRoute: typeof AuthedImport
+    }
+    '/_authed/all-hives': {
+      id: '/_authed/all-hives'
+      path: '/all-hives'
+      fullPath: '/all-hives'
+      preLoaderRoute: typeof AuthedAllHivesImport
+      parentRoute: typeof AuthedImport
+    }
+    '/_authed/analytics': {
+      id: '/_authed/analytics'
+      path: '/analytics'
+      fullPath: '/analytics'
+      preLoaderRoute: typeof AuthedAnalyticsImport
+      parentRoute: typeof AuthedImport
+    }
     '/_authed/dashboard': {
       id: '/_authed/dashboard'
       path: '/dashboard'
       fullPath: '/dashboard'
       preLoaderRoute: typeof AuthedDashboardImport
+      parentRoute: typeof AuthedImport
+    }
+    '/_authed/hive': {
+      id: '/_authed/hive'
+      path: '/hive'
+      fullPath: '/hive'
+      preLoaderRoute: typeof AuthedHiveImport
+      parentRoute: typeof AuthedImport
+    }
+    '/_authed/reports': {
+      id: '/_authed/reports'
+      path: '/reports'
+      fullPath: '/reports'
+      preLoaderRoute: typeof AuthedReportsImport
+      parentRoute: typeof AuthedImport
+    }
+    '/_authed/schedule': {
+      id: '/_authed/schedule'
+      path: '/schedule'
+      fullPath: '/schedule'
+      preLoaderRoute: typeof AuthedScheduleImport
+      parentRoute: typeof AuthedImport
+    }
+    '/_authed/settings': {
+      id: '/_authed/settings'
+      path: '/settings'
+      fullPath: '/settings'
+      preLoaderRoute: typeof AuthedSettingsImport
+      parentRoute: typeof AuthedImport
+    }
+    '/_authed/team': {
+      id: '/_authed/team'
+      path: '/team'
+      fullPath: '/team'
+      preLoaderRoute: typeof AuthedTeamImport
       parentRoute: typeof AuthedImport
     }
     '/_public/_auth': {
@@ -162,38 +267,35 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof PublicAuthSignupImport
       parentRoute: typeof PublicAuthImport
     }
-    '/_public/showcase/deployer': {
-      id: '/_public/showcase/deployer'
-      path: '/showcase/deployer'
-      fullPath: '/showcase/deployer'
-      preLoaderRoute: typeof PublicShowcaseDeployerImport
-      parentRoute: typeof PublicImport
-    }
-    '/_public/showcase/dnd': {
-      id: '/_public/showcase/dnd'
-      path: '/showcase/dnd'
-      fullPath: '/showcase/dnd'
-      preLoaderRoute: typeof PublicShowcaseDndImport
-      parentRoute: typeof PublicImport
-    }
-    '/_public/showcase/jsonlidity': {
-      id: '/_public/showcase/jsonlidity'
-      path: '/showcase/jsonlidity'
-      fullPath: '/showcase/jsonlidity'
-      preLoaderRoute: typeof PublicShowcaseJsonlidityImport
-      parentRoute: typeof PublicImport
-    }
   }
 }
 
 // Create and export the route tree
 
 interface AuthedRouteChildren {
+  AuthedAddNewHiveRoute: typeof AuthedAddNewHiveRoute
+  AuthedAlertsRoute: typeof AuthedAlertsRoute
+  AuthedAllHivesRoute: typeof AuthedAllHivesRoute
+  AuthedAnalyticsRoute: typeof AuthedAnalyticsRoute
   AuthedDashboardRoute: typeof AuthedDashboardRoute
+  AuthedHiveRoute: typeof AuthedHiveRoute
+  AuthedReportsRoute: typeof AuthedReportsRoute
+  AuthedScheduleRoute: typeof AuthedScheduleRoute
+  AuthedSettingsRoute: typeof AuthedSettingsRoute
+  AuthedTeamRoute: typeof AuthedTeamRoute
 }
 
 const AuthedRouteChildren: AuthedRouteChildren = {
+  AuthedAddNewHiveRoute: AuthedAddNewHiveRoute,
+  AuthedAlertsRoute: AuthedAlertsRoute,
+  AuthedAllHivesRoute: AuthedAllHivesRoute,
+  AuthedAnalyticsRoute: AuthedAnalyticsRoute,
   AuthedDashboardRoute: AuthedDashboardRoute,
+  AuthedHiveRoute: AuthedHiveRoute,
+  AuthedReportsRoute: AuthedReportsRoute,
+  AuthedScheduleRoute: AuthedScheduleRoute,
+  AuthedSettingsRoute: AuthedSettingsRoute,
+  AuthedTeamRoute: AuthedTeamRoute,
 }
 
 const AuthedRouteWithChildren =
@@ -220,17 +322,11 @@ const PublicAuthRouteWithChildren = PublicAuthRoute._addFileChildren(
 interface PublicRouteChildren {
   PublicAuthRoute: typeof PublicAuthRouteWithChildren
   PublicIndexRoute: typeof PublicIndexRoute
-  PublicShowcaseDeployerRoute: typeof PublicShowcaseDeployerRoute
-  PublicShowcaseDndRoute: typeof PublicShowcaseDndRoute
-  PublicShowcaseJsonlidityRoute: typeof PublicShowcaseJsonlidityRoute
 }
 
 const PublicRouteChildren: PublicRouteChildren = {
   PublicAuthRoute: PublicAuthRouteWithChildren,
   PublicIndexRoute: PublicIndexRoute,
-  PublicShowcaseDeployerRoute: PublicShowcaseDeployerRoute,
-  PublicShowcaseDndRoute: PublicShowcaseDndRoute,
-  PublicShowcaseJsonlidityRoute: PublicShowcaseJsonlidityRoute,
 }
 
 const PublicRouteWithChildren =
@@ -238,85 +334,121 @@ const PublicRouteWithChildren =
 
 export interface FileRoutesByFullPath {
   '': typeof PublicAuthRouteWithChildren
+  '/add-new-hive': typeof AuthedAddNewHiveRoute
+  '/alerts': typeof AuthedAlertsRoute
+  '/all-hives': typeof AuthedAllHivesRoute
+  '/analytics': typeof AuthedAnalyticsRoute
   '/dashboard': typeof AuthedDashboardRoute
+  '/hive': typeof AuthedHiveRoute
+  '/reports': typeof AuthedReportsRoute
+  '/schedule': typeof AuthedScheduleRoute
+  '/settings': typeof AuthedSettingsRoute
+  '/team': typeof AuthedTeamRoute
   '/': typeof PublicIndexRoute
   '/forgot-password': typeof PublicAuthForgotPasswordRoute
   '/reset-password': typeof PublicAuthResetPasswordRoute
   '/signin': typeof PublicAuthSigninRoute
   '/signup': typeof PublicAuthSignupRoute
-  '/showcase/deployer': typeof PublicShowcaseDeployerRoute
-  '/showcase/dnd': typeof PublicShowcaseDndRoute
-  '/showcase/jsonlidity': typeof PublicShowcaseJsonlidityRoute
 }
 
 export interface FileRoutesByTo {
   '': typeof PublicAuthRouteWithChildren
+  '/add-new-hive': typeof AuthedAddNewHiveRoute
+  '/alerts': typeof AuthedAlertsRoute
+  '/all-hives': typeof AuthedAllHivesRoute
+  '/analytics': typeof AuthedAnalyticsRoute
   '/dashboard': typeof AuthedDashboardRoute
+  '/hive': typeof AuthedHiveRoute
+  '/reports': typeof AuthedReportsRoute
+  '/schedule': typeof AuthedScheduleRoute
+  '/settings': typeof AuthedSettingsRoute
+  '/team': typeof AuthedTeamRoute
   '/': typeof PublicIndexRoute
   '/forgot-password': typeof PublicAuthForgotPasswordRoute
   '/reset-password': typeof PublicAuthResetPasswordRoute
   '/signin': typeof PublicAuthSigninRoute
   '/signup': typeof PublicAuthSignupRoute
-  '/showcase/deployer': typeof PublicShowcaseDeployerRoute
-  '/showcase/dnd': typeof PublicShowcaseDndRoute
-  '/showcase/jsonlidity': typeof PublicShowcaseJsonlidityRoute
 }
 
 export interface FileRoutesById {
   __root__: typeof rootRoute
   '/_authed': typeof AuthedRouteWithChildren
   '/_public': typeof PublicRouteWithChildren
+  '/_authed/add-new-hive': typeof AuthedAddNewHiveRoute
+  '/_authed/alerts': typeof AuthedAlertsRoute
+  '/_authed/all-hives': typeof AuthedAllHivesRoute
+  '/_authed/analytics': typeof AuthedAnalyticsRoute
   '/_authed/dashboard': typeof AuthedDashboardRoute
+  '/_authed/hive': typeof AuthedHiveRoute
+  '/_authed/reports': typeof AuthedReportsRoute
+  '/_authed/schedule': typeof AuthedScheduleRoute
+  '/_authed/settings': typeof AuthedSettingsRoute
+  '/_authed/team': typeof AuthedTeamRoute
   '/_public/_auth': typeof PublicAuthRouteWithChildren
   '/_public/': typeof PublicIndexRoute
   '/_public/_auth/forgot-password': typeof PublicAuthForgotPasswordRoute
   '/_public/_auth/reset-password': typeof PublicAuthResetPasswordRoute
   '/_public/_auth/signin': typeof PublicAuthSigninRoute
   '/_public/_auth/signup': typeof PublicAuthSignupRoute
-  '/_public/showcase/deployer': typeof PublicShowcaseDeployerRoute
-  '/_public/showcase/dnd': typeof PublicShowcaseDndRoute
-  '/_public/showcase/jsonlidity': typeof PublicShowcaseJsonlidityRoute
 }
 
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
   fullPaths:
     | ''
+    | '/add-new-hive'
+    | '/alerts'
+    | '/all-hives'
+    | '/analytics'
     | '/dashboard'
+    | '/hive'
+    | '/reports'
+    | '/schedule'
+    | '/settings'
+    | '/team'
     | '/'
     | '/forgot-password'
     | '/reset-password'
     | '/signin'
     | '/signup'
-    | '/showcase/deployer'
-    | '/showcase/dnd'
-    | '/showcase/jsonlidity'
   fileRoutesByTo: FileRoutesByTo
   to:
     | ''
+    | '/add-new-hive'
+    | '/alerts'
+    | '/all-hives'
+    | '/analytics'
     | '/dashboard'
+    | '/hive'
+    | '/reports'
+    | '/schedule'
+    | '/settings'
+    | '/team'
     | '/'
     | '/forgot-password'
     | '/reset-password'
     | '/signin'
     | '/signup'
-    | '/showcase/deployer'
-    | '/showcase/dnd'
-    | '/showcase/jsonlidity'
   id:
     | '__root__'
     | '/_authed'
     | '/_public'
+    | '/_authed/add-new-hive'
+    | '/_authed/alerts'
+    | '/_authed/all-hives'
+    | '/_authed/analytics'
     | '/_authed/dashboard'
+    | '/_authed/hive'
+    | '/_authed/reports'
+    | '/_authed/schedule'
+    | '/_authed/settings'
+    | '/_authed/team'
     | '/_public/_auth'
     | '/_public/'
     | '/_public/_auth/forgot-password'
     | '/_public/_auth/reset-password'
     | '/_public/_auth/signin'
     | '/_public/_auth/signup'
-    | '/_public/showcase/deployer'
-    | '/_public/showcase/dnd'
-    | '/_public/showcase/jsonlidity'
   fileRoutesById: FileRoutesById
 }
 
@@ -347,21 +479,63 @@ export const routeTree = rootRoute
     "/_authed": {
       "filePath": "_authed.tsx",
       "children": [
-        "/_authed/dashboard"
+        "/_authed/add-new-hive",
+        "/_authed/alerts",
+        "/_authed/all-hives",
+        "/_authed/analytics",
+        "/_authed/dashboard",
+        "/_authed/hive",
+        "/_authed/reports",
+        "/_authed/schedule",
+        "/_authed/settings",
+        "/_authed/team"
       ]
     },
     "/_public": {
       "filePath": "_public.tsx",
       "children": [
         "/_public/_auth",
-        "/_public/",
-        "/_public/showcase/deployer",
-        "/_public/showcase/dnd",
-        "/_public/showcase/jsonlidity"
+        "/_public/"
       ]
+    },
+    "/_authed/add-new-hive": {
+      "filePath": "_authed/add-new-hive.tsx",
+      "parent": "/_authed"
+    },
+    "/_authed/alerts": {
+      "filePath": "_authed/alerts.tsx",
+      "parent": "/_authed"
+    },
+    "/_authed/all-hives": {
+      "filePath": "_authed/all-hives.tsx",
+      "parent": "/_authed"
+    },
+    "/_authed/analytics": {
+      "filePath": "_authed/analytics.tsx",
+      "parent": "/_authed"
     },
     "/_authed/dashboard": {
       "filePath": "_authed/dashboard.tsx",
+      "parent": "/_authed"
+    },
+    "/_authed/hive": {
+      "filePath": "_authed/hive.tsx",
+      "parent": "/_authed"
+    },
+    "/_authed/reports": {
+      "filePath": "_authed/reports.tsx",
+      "parent": "/_authed"
+    },
+    "/_authed/schedule": {
+      "filePath": "_authed/schedule.tsx",
+      "parent": "/_authed"
+    },
+    "/_authed/settings": {
+      "filePath": "_authed/settings.tsx",
+      "parent": "/_authed"
+    },
+    "/_authed/team": {
+      "filePath": "_authed/team.tsx",
       "parent": "/_authed"
     },
     "/_public/_auth": {
@@ -393,18 +567,6 @@ export const routeTree = rootRoute
     "/_public/_auth/signup": {
       "filePath": "_public/_auth/signup.tsx",
       "parent": "/_public/_auth"
-    },
-    "/_public/showcase/deployer": {
-      "filePath": "_public/showcase/deployer.tsx",
-      "parent": "/_public"
-    },
-    "/_public/showcase/dnd": {
-      "filePath": "_public/showcase/dnd.tsx",
-      "parent": "/_public"
-    },
-    "/_public/showcase/jsonlidity": {
-      "filePath": "_public/showcase/jsonlidity.tsx",
-      "parent": "/_public"
     }
   }
 }

@@ -68,6 +68,30 @@
       "types": "./dist/src/carousel.d.ts",
       "default": "./src/carousel.tsx"
     },
+    "./sidebar": {
+      "types": "./dist/src/sidebar.d.ts",
+      "default": "./src/sidebar.tsx"
+    },
+    "./sheet": {
+      "types": "./dist/src/sheet.d.ts",
+      "default": "./src/sheet.tsx"
+    },
+    "./separator": {
+      "types": "./dist/src/separator.d.ts",
+      "default": "./src/separator.tsx"
+    },
+    "./skeleton": {
+      "types": "./dist/src/skeleton.d.ts",
+      "default": "./src/skeleton.tsx"
+    },
+    "./tooltip": {
+      "types": "./dist/src/tooltip.d.ts",
+      "default": "./src/tooltip.tsx"
+    },
+    "./hooks/use-mobile": {
+      "types": "./dist/src/hooks/use-mobile.d.ts",
+      "default": "./src/hooks/use-mobile.tsx"
+    },
     "./scroll-area": {
       "types": "./dist/src/scroll-area.d.ts",
       "default": "./src/scroll-area.tsx"
@@ -75,6 +99,14 @@
     "./tabs": {
       "types": "./dist/src/tabs.d.ts",
       "default": "./src/tabs.tsx"
+    },
+    "./breadcrumb": {
+      "types": "./dist/src/breadcrumb.d.ts",
+      "default": "./src/breadcrumb.tsx"
+    },
+    "./select": {
+      "types": "./dist/src/select.d.ts",
+      "default": "./src/select.tsx"
     }
   },
   "license": "MIT",
@@ -93,8 +125,11 @@
     "@radix-ui/react-dropdown-menu": "^2.1.4",
     "@radix-ui/react-label": "^2.1.1",
     "@radix-ui/react-scroll-area": "^1.2.2",
+    "@radix-ui/react-select": "^2.2.2",
+    "@radix-ui/react-separator": "^1.1.2",
     "@radix-ui/react-slot": "^1.1.1",
     "@radix-ui/react-tabs": "^1.1.2",
+    "@radix-ui/react-tooltip": "^1.1.8",
     "class-variance-authority": "^0.7.1",
     "clsx": "^2.1.1",
     "embla-carousel-react": "^8.5.2",
